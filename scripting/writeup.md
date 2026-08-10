@@ -1,3 +1,53 @@
+# [TryHackMe | Scripting](https://tryhackme.com/room/scripting) Challenge Room Solution Writeup
+
+## Task 1 \[Easy\] Base64
+
+- Read input from file.
+- Decode n=50 times.
+- Use a loop.
+
+### Python3 Solution
+
+```python3
+import base64
+
+with open("b64_1550406728131.txt", "r") as f:
+    b64_encoded = f.read().strip()
+
+for i in range(50):
+    b64_encoded = base64.b64decode(b64_encoded)
+
+b64_decoded = b64_encoded if isinstance(b64_encoded, str) else b64_encoded.decode("utf-8")
+
+print(f"Decoded: {b64_decoded}")
+```
+
+### Bash Solution
+
+```bash
+#!/bin/bash
+
+b64_encoded=$(< "b64_1550406728131.txt")
+
+for i in $(seq 1 50); do
+    b64_encoded=$(base64 --decode <<< "$b64_encoded")
+done
+
+b64_decoded=$b64_encoded
+
+echo "Decoded: $b64_decoded"
+```
+
+## Task 2 \[Medium\] Gotta Catch Em All
+
+- Move through a sequence of ports, performing operations at each stop on a running number (starting at 0).
+- Each port reports instructions of the form ```operation_type operation_value next_port```.
+- Monitor port 3010 for its report on the currently live port in the sequence.
+- Wait for the first port (1337) to become live.
+- Traverse the sequence until reaching the last port (9765).
+- Report the final running number.
+
+```python3
 import argparse
 import re
 import socket
@@ -182,3 +232,4 @@ class PortHopper():
 if __name__ == "__main__":
     port_hopper = PortHopper()
     port_hopper.run()
+```
