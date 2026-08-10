@@ -96,20 +96,20 @@ class DecryptionSearch():
                 response = self._request_response(b"hello", sock)
 
                 response = self._request_response(b"ready", sock)
-                response = re.search(rb"key:(.*?) iv:(.*?) to decrypt and find the flag that has a SHA256 checksum of (.{32})", response)
-                key, iv, checksum_target = response.group(1), response.group(2), response.group(3).hex()
+                response = re.search(rb"key:(.*?) iv:(.*?) to decrypt and find the flag that has a SHA256 checksum of (.{32})", response) # pyright: ignore[reportArgumentType, reportUnknownVariableType, reportCallIssue]
+                key, iv, checksum_target = response.group(1), response.group(2), response.group(3).hex() # pyright: ignore[reportUnknownMemberType, reportUnknownVariableType]
                 print(f"Key = {key} | IV = {iv} | Checksum = {checksum_target}")
 
-                aesgcm = AESGCM(key)
+                aesgcm = AESGCM(key) # pyright: ignore[reportUnknownArgumentType]
                 checksum_candidate = b""
                 print(f"Decrypting ...")
                 while checksum_candidate != checksum_target:
                     ciphertext = self._request_response(b"final", sock, verbose = False)
                     tag = self._request_response(b"final", sock, verbose = False)
-                    plaintext = aesgcm.decrypt(iv, ciphertext + tag, None)
+                    plaintext = aesgcm.decrypt(iv, ciphertext + tag, None) # pyright: ignore[reportOperatorIssue, reportUnknownArgumentType]
                     checksum_candidate = hashlib.sha256(plaintext).hexdigest()
                     print(f"Decrypted = {plaintext} | Checksum match = {checksum_candidate == checksum_target}")
-                print(f"Checksum matched ... Flag: {plaintext.decode('utf-8')}")
+                print(f"Checksum matched ... Flag: {plaintext.decode('utf-8')}") # pyright: ignore[reportPossiblyUnboundVariable]
 
         except (socket.timeout, ConnectionRefusedError, OSError):
             raise ValueError("Failed to retrieve response from the target.")
