@@ -241,7 +241,7 @@ if __name__ == "__main__":
 - Request instructions with ```b"ready"```.
 - Log the returned key, iv (initialization vector), and target SHA256 checksum. 
 - Obtain ciphertext-tag pairs via two sequential ```b"final"``` requests.
-- Decode pair using AES GCM and the [PyCA cyrptography](https://cryptography.io/en/latest/#) library.
+- Decode pair using AES GCM via the [PyCA cyrptography](https://cryptography.io/en/latest/#) library.
 - Compute the candidate SHA256 checksum (ensure same format between checksums such as hex).
 - Iterate through these pairs until the candidate checksum matches the target.
 - Report the corresponding decoded flag.
