@@ -3,8 +3,8 @@
 ## General Approach Structure
 
 - Create ```hashes.txt``` then manually append hashes and salts to it.
-- Feed each hash through [HashID](https://pypi.org/project/hashID/) and cross-reference against the [Hashcat Wiki](https://hashcat.net/wiki/doku.php?id=example_hashes).
-- Identification can be (partially) automated as follows with ```identify.sh``` seen below.
+- Feed each hash (with salt) through [HashID](https://pypi.org/project/hashID/) and manually cross-reference against the [Hashcat Wiki](https://hashcat.net/wiki/doku.php?id=example_hashes).
+- Identification can be (partially) automated as follows with ```identify.sh``` as seen below.
 
 ```bash
 #!/bin/bash
@@ -43,7 +43,7 @@ done < "${src_dir}hashes.txt"
 
 ```
 
-- Feed ```hashes.txt``` through ```crack.sh``` seen below.
+- Feed ```hashes.txt``` through ```crack.sh``` as seen below.
 
 ```bash
 #!/bin/bash
