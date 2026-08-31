@@ -3,6 +3,9 @@
 venv/
 env/
 
+# Auxiliary files
+.auxiliary/
+
 # VS Code
 .vscode/
 *.code-workspace
@@ -13,3 +16,6 @@ __pycache__/
 
 # Large wordlists
 crackthehash/rockyou.txt
+
+# Later projects
+nahamstore/*
