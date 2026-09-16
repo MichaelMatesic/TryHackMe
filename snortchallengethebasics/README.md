@@ -1,6 +1,6 @@
 # [TryHackMe | Snort Challenge - The Basics](https://tryhackme.com/room/snortchallenges1) Challenge Room Solution Writeup
 
-## [Task 2 Writing IDS Rules (HTTP)](https://tryhackme.com/room/snortchallenges1?taskNo=2)
+## [Task 2 | Writing IDS Rules (HTTP)](https://tryhackme.com/room/snortchallenges1?taskNo=2)
 
 ### Write a rule to detect all TCP packets from or to port 80.
 

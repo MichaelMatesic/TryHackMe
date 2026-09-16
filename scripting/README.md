@@ -1,6 +1,6 @@
 # [TryHackMe | Scripting](https://tryhackme.com/room/scripting) Challenge Room Solution Writeup
 
-## [Task 1 \[Easy\] Base64](https://tryhackme.com/room/scripting?taskNo=1)
+## [Task 1 | \[Easy\] Base64](https://tryhackme.com/room/scripting?taskNo=1)
 
 - Read input from file.
 - Decode n=50 times.
@@ -38,7 +38,7 @@ b64_decoded=$b64_encoded
 echo "Decoded: $b64_decoded"
 ```
 
-## [Task 2 \[Medium\] Gotta Catch Em All](https://tryhackme.com/room/scripting?taskNo=2)
+## [Task 2 | \[Medium\] Gotta Catch Em All](https://tryhackme.com/room/scripting?taskNo=2)
 
 - Move through a sequence of ports, performing operations at each stop on a running number (starting at 0).
 - Each port reports instructions of the form ```operation_type operation_value next_port```.

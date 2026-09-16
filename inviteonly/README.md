@@ -1,6 +1,6 @@
 # [TryHackMe | Invite Only](https://tryhackme.com/room/invite-only) Challenge Room Solution Writeup
 
-## [Task 1 Invite Only](https://tryhackme.com/room/invite-only?taskNo=1)
+## [Task 1 | Invite Only](https://tryhackme.com/room/invite-only?taskNo=1)
 
 The following information will be used for investigation:
 - Flagged IP: `101[.]99[.]76[.]120`

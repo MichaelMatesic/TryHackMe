@@ -1,6 +1,6 @@
 # [TryHackMe | Shadow Trace](https://tryhackme.com/room/shadowtrace) Challenge Room Solution Writeup
 
-## [Task 2 File Analysis](https://tryhackme.com/room/shadowtrace?taskNo=2)
+## [Task 2 | File Analysis](https://tryhackme.com/room/shadowtrace?taskNo=2)
 
 To answer these questions, open `C:\Users\DFIRUser\Desktop\windows-update.exe` with `C:\Users\DFIRUser\DFIR Tools\pestudio\pestudio.exe`.
 

@@ -1,6 +1,6 @@
 # [TryHackMe | Tools R Us](https://tryhackme.com/room/toolsrus) Challenge Room Solution Writeup
 
-## [Task 1 Toys R Us](https://tryhackme.com/room/toolsrus?taskNo=1)
+## [Task 1 | Toys R Us](https://tryhackme.com/room/toolsrus?taskNo=1)
 
 ### Question 1: What directory can you find, that begins with a "g"?
 

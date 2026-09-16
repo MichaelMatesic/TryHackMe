@@ -81,7 +81,7 @@ $6$aReallyHardSalt$6WKUTqzq.UQQmrm0p/T7MPpMbGNnzXPMAXi4bJMl9be.cfi3/qxIf.hsGpS41
 e5d8870e5bdd26602cab8dbe07a942c8669e56d6:tryhackme:481616481616
 ```
 
-## [Task 1 Level 1](https://tryhackme.com/room/crackthehash?taskNo=1)
+## [Task 1 | Level 1](https://tryhackme.com/room/crackthehash?taskNo=1)
 
 - From the aforementioned ```cracked.txt``` we have:
 
@@ -93,7 +93,7 @@ $2y$12$Dwt1BZj6pcyc3Dy1FWZ5ieeUznr71EeNkJkUlypTsgbX1H68wsRom:bleh
 279412f945939ba78ce0758d3fd83daa:Eternity22
 ```
 
-## [Task 2 Level 2](https://tryhackme.com/room/crackthehash?taskNo=2)
+## [Task 2 | Level 2](https://tryhackme.com/room/crackthehash?taskNo=2)
 
 - From the aforementioned ```cracked.txt``` we have:
 

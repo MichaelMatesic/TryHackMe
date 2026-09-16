@@ -1,6 +1,6 @@
 # [TryHackMe | Dunkle Materie](https://tryhackme.com/room/dunklematerieptxc9) Challenge Room Solution Writeup
 
-## [Task 1 Ransomware Investigation](https://tryhackme.com/room/dunklematerieptxc9?taskNo=1)
+## [Task 1 | Ransomware Investigation](https://tryhackme.com/room/dunklematerieptxc9?taskNo=1)
 
 Run `C:\Users\Administrator\Desktop\procdot_1_22_57_windows\win64\procdot.exe`, load `C:\Users\Administrator\Desktop\Analysis Files\Logfile.CSV` into the `Procmon` variable and `C:\Users\Administrator\Desktop\Analysis Files\traffic.pcap` into the `Windump` variable. 
 

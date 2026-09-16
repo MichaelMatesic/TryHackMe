@@ -1,6 +1,6 @@
 # [TryHackMe | Heartbleed](https://tryhackme.com/room/heartbleed) Challenge Room Solution Writeup
 
-## [Task 2 Protecting Data in Transit](https://tryhackme.com/room/heartbleed?taskNo=2)
+## [Task 2 | Protecting Data in Transit](https://tryhackme.com/room/heartbleed?taskNo=2)
 
 Use `nmap` to scan vulnerabilities of the TARGET_IP.
 

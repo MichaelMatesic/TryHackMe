@@ -1,6 +1,6 @@
 # [TryHackMe | Snort Challenge - Live Attacks](https://tryhackme.com/room/snortchallenges2) Challenge Room Solution Writeup
 
-## [Task 2 Scenario 1 | Brute-Force](https://tryhackme.com/room/snortchallenges2?taskNo=2)
+## [Task 2 | Scenario 1 | Brute-Force](https://tryhackme.com/room/snortchallenges2?taskNo=2)
 
 Run `snort` in packet-sniffing mode for about a minute and save the log for inspection using `sudo snort -l.`. Then inspect the log using `sudo snort -r snort.log.XXXXXXXXXX -X`. Noticing repeated `SSH` attempts, filter the log accordingly using `sudo snort -r snort.log.XXXXXXXXXX -X 'tcp[13] & 2 != 0 and tcp[13] & 16 == 0`, which searches for `SYN` attempts and excludes `SYN ACK` responses. Doing so will reveal many packets like this:
 
