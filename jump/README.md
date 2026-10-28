@@ -5,7 +5,7 @@
 Begin by scanning TARGET_IP with `nmap`.
 
 ```bash
-nmap -sV -p- TARGET_IP
+root@ip-ATTACKER_IP:~# nmap -sV -p- TARGET_IP
 Starting Nmap 7.94SVN ( https://nmap.org ) at 
 Nmap scan report for ip-TARGET_IP.ec2.internal (TARGET_IP)
 Host is up (0.00029s latency).
@@ -22,8 +22,7 @@ Nmap done: 1 IP address (1 host up) scanned in 1.95 seconds
 There is an open `FTP` server, check if it supports anonymous login.
 
 ```bash
-ftp TARGET_IP
-
+root@ip-ATTACKER_IP:~# ftp TARGET_IP
 Connected to TARGET_IP.
 220 (vsFTPd 3.0.5)
 Name (TARGET_IP:root): anonymous
@@ -64,7 +63,7 @@ ftp> get README.txt
 Examine its contents.
 
 ```bash
-cat README.txt 
+root@ip-ATTACKER_IP:~# cat README.txt 
 [ recon pipeline ]
 
 All recon jobs must be placed in incoming/.
