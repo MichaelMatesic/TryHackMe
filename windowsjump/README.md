@@ -2,7 +2,7 @@
 
 ### What are the contents of flag1.txt?
 
-Begin by scanning TARGET_IP with `nmap`.
+Begin by scanning `TARGET_IP` with `nmap`.
 
 ```bash
 root@ip-ATTACKER_IP:~# nmap -sV TARGET_IP

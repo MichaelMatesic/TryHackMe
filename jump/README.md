@@ -2,7 +2,7 @@
 
 ### What is the flag found in the recon_user’s home directory?
 
-Begin by scanning TARGET_IP with `nmap`.
+Begin by scanning `TARGET_IP` with `nmap`.
 
 ```bash
 root@ip-ATTACKER_IP:~# nmap -sV -p- TARGET_IP
