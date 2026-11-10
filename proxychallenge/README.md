@@ -538,7 +538,7 @@ C:\Users\Administrator\Desktop> type flag.txt
 THM{S4U2S3lf_C0nstr41ned_D3l3g4t10n_2_DA}
 ```
 
-The flag is recovered as **THM{S4U2S3lf_C0nstr41ned_D3l3g4t10n_2_DA}**.
+The captured flag is **THM{S4U2S3lf_C0nstr41ned_D3l3g4t10n_2_DA}**.
 
 For further post-exploitation, use the forged ticket with `secretsdump` to collect all domain account hashes. That of `krbtgt` can even be used to forge a golden ticket!
 

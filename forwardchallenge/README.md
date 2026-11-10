@@ -56,6 +56,8 @@ Service detection performed. Please report any incorrect results at https://nmap
 Nmap done: 1 IP address (1 host up) scanned in 199.05 seconds
 ```
 
+Append domain names.
+
 ```bash
 root@ip-ATTACKER_IP:~# echo 'TARGET_IP dc01.ctf.local dc01 ctf.local' >> /etc/hosts
 ```
@@ -479,7 +481,7 @@ C:\Users\Administrator\Desktop> type flag.txt
 THM{RBCD_S4U2Pr0xy_T1ck3t_Th3ft_2_DA}
 ```
 
-The flag is recovered as **THM{RBCD_S4U2Pr0xy_T1ck3t_Th3ft_2_DA}**.
+The captured flag is **THM{RBCD_S4U2Pr0xy_T1ck3t_Th3ft_2_DA}**.
 
 For further post-exploitation, use the forged ticket with `secretsdump` to collect all domain account hashes. That of `krbtgt` can even be used to forge a golden ticket!
 
