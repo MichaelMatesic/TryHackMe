@@ -76,7 +76,7 @@ root@ip-ATTACKER-IP:~# smbclient -L //TARGET-IP -N
 SMB1 disabled -- no workgroup available
 ```
 
-Attempt to access the `IT-Shared` share, then find and get the various documents.
+Attempt to access the `IT-Shared` share, then find and get available documents.
 
 ```bash
 root@ip-ATTACKER-IP:~# smbclient //TARGET-IP/IT-Shared -N

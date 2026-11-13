@@ -24,7 +24,7 @@ Service detection performed. Please report any incorrect results at https://nmap
 Nmap done: 1 IP address (1 host up) scanned in 10.93 seconds
 ```
 
-Use `gobuster` to map out the directory structure of the target website. 
+Use `gobuster` to map out the directory structure of the `TARGET_IP` website. 
 
 ```yaml
 root@ip-ATTACKER_IP:~# gobuster dir --url http://TARGET_IP:5050/ -w /usr/share/wordlists/dirb/big.txt -r -x html,php,txt

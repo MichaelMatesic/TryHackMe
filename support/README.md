@@ -2,7 +2,7 @@
 
 ### What is the flag value after logging in as admin?
 
-Use `gobuster` to map out the directory structure of the target website. 
+Use `gobuster` to map out the directory structure of the `TARGET_IP` website. 
 
 ```bash
 gobuster dir --url http://TARGET_IP/ -w /usr/share/wordlists/SecLists/Discovery/Web-Content/directory-list-2.3-big.txt -r -x html,php,txt
