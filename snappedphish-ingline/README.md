@@ -251,7 +251,7 @@ The defanged email address is **m3npat[@]yandex[.]com**.
 
 ### Return to the phishing URL and locate the flag.txt file. Using CyberChef (opens in new tab) to decode the flag, what is the secret value?
 
-Use `curl` to retrieve the encoded flag.
+Use `cURL` to retrieve the encoded flag.
 
 ```bash
 curl -s http://kennaroads.buzz/data/Update365/office365/flag.txt

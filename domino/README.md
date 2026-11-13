@@ -642,7 +642,7 @@ The captured flag is **THM{bl1nd_x55_s3ss10n_h1j4ck_fl4g2}**.
 > [!NOTE]
 > This path is sufficient to obtain the second flag but is included as a supplementary exploitation route, as JWT forgery from Path 1 is required to discover the vulnerability associated with the third flag.
 
-Inspect the session cookie in `cookies.txt` to determine whether the `HttpOnly` attribute is set. In `curl`'s Netscape cookie-jar format, a `HttpOnly` cookie is prefixed with `#HttpOnly_` before the target domain. Since this prefix is absent from the `nexus_session` entry, the cookie is not marked as `HttpOnly` and may therefore be accessible to `JavaScript` through `document.cookie`. This makes cookie theft through a potential stored XSS vulnerability in the support ticket functionality. 
+Inspect the session cookie in `cookies.txt` to determine whether the `HttpOnly` attribute is set. In `cURL`'s Netscape cookie-jar format, a `HttpOnly` cookie is prefixed with `#HttpOnly_` before the target domain. Since this prefix is absent from the `nexus_session` entry, the cookie is not marked as `HttpOnly` and may therefore be accessible to `JavaScript` through `document.cookie`. This makes cookie theft through a potential stored XSS vulnerability in the support ticket functionality. 
 
 ```bash
 root@ip-ATTACKER_IP:~# cat cookies.txt 

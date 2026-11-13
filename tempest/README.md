@@ -4,15 +4,15 @@
 
 ### What is the SHA256 hash of the capture.pcapng file?
 
-Use `powershell.exe` to run `PS C:\Users\user\Desktop\Incident Files> Get-FileHash -Algorithm SHA256 .\capture.pcapng` to get **cb3a1e6acfb246f256fbfefdb6f494941aa30a5a7c3f5258c3e63cfa27a23dc6**.
+Use `PowerShell` to run `PS C:\Users\user\Desktop\Incident Files> Get-FileHash -Algorithm SHA256 .\capture.pcapng` to get **cb3a1e6acfb246f256fbfefdb6f494941aa30a5a7c3f5258c3e63cfa27a23dc6**.
 
 ### What is the SHA256 hash of the sysmon.evtx file?
 
-Use `powershell.exe` to run `PS C:\Users\user\Desktop\Incident Files> Get-FileHash -Algorithm SHA256 .\sysmon.evtx` to get **665dc3519c2c235188201b5a8594fea205c3bcbc75193363b87d2837aca3c91f**.
+Use `PowerShell` to run `PS C:\Users\user\Desktop\Incident Files> Get-FileHash -Algorithm SHA256 .\sysmon.evtx` to get **665dc3519c2c235188201b5a8594fea205c3bcbc75193363b87d2837aca3c91f**.
 
 ### What is the SHA256 hash of the windows.evtx file?
 
-Use `powershell.exe` to run `PS C:\Users\user\Desktop\Incident Files> Get-FileHash -Algorithm SHA256 .\windows.evtx` to get **d0279d5292bc5b25595115032820c978838678f4333b725998cfe9253e186d60**.
+Use `PowerShell` to run `PS C:\Users\user\Desktop\Incident Files> Get-FileHash -Algorithm SHA256 .\windows.evtx` to get **d0279d5292bc5b25595115032820c978838678f4333b725998cfe9253e186d60**.
 
 ## [Task 4 | Initial Access - Malicious Document](https://tryhackme.com/room/tempestincident?taskNo=4)
 
@@ -24,7 +24,7 @@ The malicious document has a .doc extension.
 The user downloaded the malicious document via chrome.exe.
 The malicious document then executed a chain of commands to attain code execution.
 
-Use `powershell.exe` to run `PS C:\Tools\EvtxECmd> .\EvtxECmd.exe -f 'C:\Users\user\Desktop\Incident Files\sysmon.evtx' --csv 'C:\Users\user\Desktop\Incident Files' --csvf sysmon.csv`, then open `TimelineExplorer.exe` and load this file.
+Use `PowerShell` to run `PS C:\Tools\EvtxECmd> .\EvtxECmd.exe -f 'C:\Users\user\Desktop\Incident Files\sysmon.evtx' --csv 'C:\Users\user\Desktop\Incident Files' --csvf sysmon.csv`, then open `TimelineExplorer.exe` and load this file.
 
 ### The user of this machine was compromised by a malicious document. What is the file name of the document?
 
@@ -205,7 +205,7 @@ Ajust the filters to be `Line >= 481 AND User Name = NT AUTHORITY\SYSTEM AND Map
 
 ## [Task 9 | Actions on Objective - Fully-Owned Machine](https://tryhackme.com/room/tempestincident?taskNo=9)
 
-Use `powershell.exe` to run `PS C:\Tools\EvtxECmd> .\EvtxECmd.exe -f 'C:\Users\user\Desktop\Incident Files\windows.evtx' --csv 'C:\Users\user\Desktop\Incident Files' --csvf windows.csv`, then open `TimelineExplorer.exe` and load this file.
+Use `PowerShell` to run `PS C:\Tools\EvtxECmd> .\EvtxECmd.exe -f 'C:\Users\user\Desktop\Incident Files\windows.evtx' --csv 'C:\Users\user\Desktop\Incident Files' --csvf windows.csv`, then open `TimelineExplorer.exe` and load this file.
 
 ### Upon achieving SYSTEM access, the attacker then created two users. What are the account names? Format: Answer in alphabetical order - comma delimited
 

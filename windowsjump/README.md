@@ -72,7 +72,7 @@ It appears that the employee default credentials may be used to log in.
 root@ip-ATTACKER_IP:~# xfreerdp /v:TARGET_IP /u:thmuser /p:'Password1!' /dynamic-resolution
 ```
 
-Open `powershell.exe` and confirm successfull escalation to `thmuser`.
+Open `PowerShell` and confirm successfull escalation to `thmuser`.
 
 ```bash
 PS C:\Users\thmuser.PRIVESC> whoami /all

