@@ -50,7 +50,7 @@ root@ip-ATTACKER_IP:~# smbclient -L //TARGET_IP -N
 SMB1 disabled -- no workgroup available
 ```
 
-Attempt to access the `public` share, then find and get available documents. Unfortunately this appears to be a dead-end.
+Attempt to access the `public` share, then find and get available files. Unfortunately this appears to be a dead-end.
 
 ```bash
 root@ip-ATTACKER_IP:~# smbclient //TARGET_IP/public -N

@@ -78,7 +78,7 @@ Finished
 Inspect `http://TARGET_IP:5050/` to discover informtion about the operation.
 
 ```html
-root@ip-ATTACKER_IP:~# curl -X GET http://TARGET_IP:5050/ | sed '/<style\b/,/<\/style>/d'
+root@ip-ATTACKER_IP:~# curl -sX GET http://TARGET_IP:5050/ | sed '/<style\b/,/<\/style>/d'
 <!DOCTYPE html>
 <html lang="en">
 <head>
